@@ -10,6 +10,7 @@ var users = require('./routes/users');
 var ivr = require('./routes/ivr');
 var menu = require('./routes/menu');
 var extension = require('./routes/extension');
+var recordings = require('./routes/recordings');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use('/users', users);
 app.use('/ivr', ivr);
 app.use('/menu', menu);
 app.use('/extension', extension);
+app.use('/recordings', recordings);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
