@@ -9,12 +9,12 @@ describe('ivr', function () {
     it('response contains Gather', function (done) {
       var agent = supertest(app);
       agent
-        .post('/ivr/welcome')
-        .expect(function (res) {
-          var $ = cheerio.load(res.text);
-          expect($('Gather').children('Play').length).to.equal(1);
-        })
-        .expect(200, done);
+      .post('/ivr/welcome')
+      .expect(function (res) {
+        var $ = cheerio.load(res.text);
+        expect($('Gather').children('Play').length).to.equal(1);
+      })
+      .expect(200, done);
     });
   });
 });
