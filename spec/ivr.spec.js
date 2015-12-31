@@ -1,6 +1,6 @@
-var expect = require('chai').expect;
-var supertest = require('supertest');
-var cheerio = require('cheerio');
+var expect = require('chai').expect
+  , supertest = require('supertest')
+  , cheerio = require('cheerio');
 
 var app = require('../app.js');
 
@@ -13,6 +13,8 @@ describe('ivr', function () {
       .expect(function (res) {
         var $ = cheerio.load(res.text);
         expect($('Gather').children('Play').length).to.equal(1);
+        expect($('Gather').first().attr('action'))
+          .to.equal('/menu');
       })
       .expect(200, done);
     });
