@@ -1,8 +1,7 @@
-var expect = require('chai').expect;
-var supertest = require('supertest');
-var cheerio = require('cheerio');
-
-var app = require('../app.js');
+var expect = require('chai').expect
+  , supertest = require('supertest')
+  , cheerio = require('cheerio')
+  , app = require('../app.js');
 
 describe('menu', function () {
   describe('GET /menu', function () {
@@ -29,6 +28,8 @@ describe('menu', function () {
         .send({ Digits: 2 })
         .expect(function (res) {
           var $ = cheerio.load(res.text);
+          expect($('Gather').first().attr('action'))
+            .to.equal('/extension/connect');
           expect($('Gather').children('Say').length).to.equal(1);
         })
         .expect(200, done);

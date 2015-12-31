@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var twilio = require('twilio');
+var express = require('express')
+  , router = express.Router()
+  , twilio = require('twilio');
 
 // POST: /menu
 router.post('/', twilio.webhook({validate: false}), function (req, res) {
@@ -16,13 +16,13 @@ router.post('/', twilio.webhook({validate: false}), function (req, res) {
 
 var returnInstructions = function () {
   var twiml = new twilio.TwimlResponse();
-  twiml.say("To get to your extraction point, get on your bike and go down " +
-            "the street. Then Left down an alley. Avoid the police cars. Turn left " +
-            "into an unfinished housing development. Fly over the roadblock. Go " +
-            "passed the moon. Soon after you will see your mother ship.",
-            { voice: "alice", language: "en-GB" });
-  twiml.say("Thank you for calling the ET Phone Home Service - the " +
-            "adventurous alien's first choice in intergalactic travel");
+  twiml.say('To get to your extraction point, get on your bike and go down ' +
+            'the street. Then Left down an alley. Avoid the police cars. Turn left ' +
+            'into an unfinished housing development. Fly over the roadblock. Go ' +
+            'passed the moon. Soon after you will see your mother ship.',
+            { voice: 'alice', language: 'en-GB' });
+  twiml.say('Thank you for calling the ET Phone Home Service - the ' +
+            'adventurous alien\'s first choice in intergalactic travel');
   twiml.hangup();
 
   return twiml;
@@ -31,14 +31,13 @@ var returnInstructions = function () {
 var planets = function () {
   var twiml = new twilio.TwimlResponse();
   twiml.gather({
-    action: "",
-    numDigits: "1",
-    method: "POST"
+    action: '/extension/connect',
+    numDigits: '1',
   }, function () {
-    this.say("To call the planet Broh doe As O G, press 2. To call the planet " +
-             "DuhGo bah, press 3. To call an oober asteroid to your location, press 4. To " +
-             "go back to the main menu, press the star key ",
-             { voice: "alice", language: "en-GB", loop: "3" });
+    this.say('To call the planet Broh doe As O G, press 2. To call the planet ' +
+             'DuhGo bah, press 3. To call an oober asteroid to your location, press 4. To ' +
+             'go back to the main menu, press the star key ',
+             { voice: 'alice', language: 'en-GB', loop: '3' });
   });
 
   return twiml;
