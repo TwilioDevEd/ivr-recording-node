@@ -45,4 +45,35 @@ router.post('/hangup', twilio.webhook({validate: false}), function (req, res) {
   res.send(twiml);
 });
 
+// POST: /agents/screencall
+router.post('/screencall', twilio.webhook({validate: false}), function (req, res) {
+  var twiml = new twilio.TwimlResponse();
+  twiml
+    .gather({
+      action: "/agents/connectmessage",
+      numDigits: "1",
+    }, function () {
+      this
+        .say(spellPhoneNumber(req.body.From))
+        .say("Press any key to accept");
+    })
+    .say("Sorry. Did not get your response")
+    .hangup();
+
+  res.send(twiml);
+});
+
+// POST: /agents/connectmessage
+router.post('/connectmessage', twilio.webhook({validate: false}), function (req, res) {
+  var twiml = new twilio.TwimlResponse();
+  twiml
+    .say("Connecting you to the extraterrestrial in distress");
+
+  res.send(twiml);
+});
+
+var spellPhoneNumber = function (phoneNumber) {
+  return phoneNumber.split('').join(',');
+};
+
 module.exports = router;

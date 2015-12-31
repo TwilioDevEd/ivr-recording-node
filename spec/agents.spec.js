@@ -90,4 +90,35 @@ describe('agents', function () {
       .expect(200, done);
     });
   });
+
+  describe('POST /agents/screencall', function () {
+    it('responds with gather and a phone number spelled', function (done) {
+      var agent = supertest(app);
+      agent
+        .post('/agents/screencall')
+        .send({ From: '1234567890'  })
+        .expect(function (res) {
+          var $ = cheerio.load(res.text);
+          expect($('Gather').first().attr('action'))
+              .to.equal('/agents/connectmessage');
+          expect($('Gather').children().first().text())
+              .to.equal('1,2,3,4,5,6,7,8,9,0');
+          expect($('Hangup').length).to.equal(1);
+        })
+      .expect(200, done);
+    });
+  });
+
+  describe('POST /agents/connectmessage', function () {
+    it('responds with say', function (done) {
+      var agent = supertest(app);
+      agent
+        .post('/agents/connectmessage')
+        .expect(function (res) {
+          var $ = cheerio.load(res.text);
+          expect($('Say').length).to.equal(1);
+        })
+      .expect(200, done);
+    });
+  });
 });
