@@ -11,7 +11,7 @@ describe('extension', function () {
     var brodo; // Agent reference
 
     before(function (done) {
-      Agent.create({ extension: 'brodo', phoneNumber: '555 5555' })
+      Agent.create({ extension: 'Brodo', phoneNumber: '555 5555' })
         .then(function (agent) {
           brodo = agent;
           done();

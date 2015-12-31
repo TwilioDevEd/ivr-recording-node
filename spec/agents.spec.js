@@ -58,16 +58,15 @@ describe('agents', function () {
       it('responds with empty content', function (done) {
         var agent = supertest(app);
         agent
-          .post('/agents/call')
+          .post('/agents/call?agentId=5')
           .send({
-            CallStatus: 'in-progress',
-            agentId: 5
+            CallStatus: 'in-progress'
           })
           .expect(function (res) {
             var $ = cheerio.load(res.text);
             expect($('Say').length).to.equal(2);
             expect($('Record').first().attr('transcribecallback'))
-              .to.equal('/recordings/create?agentId=5');
+              .to.equal('/recordings?agentId=5');
             expect($('Record').first().attr('action'))
               .to.equal('/agents/hangup');
             expect($('Hangup').length).to.equal(1);

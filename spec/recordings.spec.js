@@ -24,9 +24,8 @@ describe('recordings', function () {
     it('creates a new recording', function (done) {
       var agent = supertest(app);
       agent
-      .post('/recordings')
+      .post('/recordings?agentId=' + brodo.id)
       .send({
-        agentId: brodo.id,
         From: '555 5556',
         TranscriptionText: 'I am homesick',
         RecordingUrl: 'http://example.com/brd.mpe'

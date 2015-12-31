@@ -25,7 +25,7 @@ router.post('/call', twilio.webhook({validate: false}), function (req, res) {
     .record({
       maxLength: 20,
       action: '/agents/hangup',
-      transcribeCallback: '/recordings/create?agentId=' + req.body.agentId
+      transcribeCallback: '/recordings?agentId=' + req.query.agentId
     })
     .say("No record received. Goodbye",
         { voice: "alice", language: "en-GB" })

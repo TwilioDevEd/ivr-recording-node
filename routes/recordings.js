@@ -5,7 +5,7 @@ var Agent = require('../models/agent');
 
 // POST: /recordings
 router.post('/', function (req, res) {
-  var agentId = req.body.agentId;
+  var agentId = req.query.agentId;
   Agent.findOne({ _id: agentId })
   .then(function (agent) {
     agent.recordings.push({
@@ -13,10 +13,10 @@ router.post('/', function (req, res) {
       transcription: req.body.TranscriptionText,
       url: req.body.RecordingUrl
     });
-    agent.save(function () {
-      res.status(201);
-      res.send('');
-    });
+    return agent.save();
+  })
+  .then(function () {
+    res.status(201).send('Recording created');
   })
   .catch(function (err) {
     console.log(err);

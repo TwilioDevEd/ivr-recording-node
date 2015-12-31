@@ -5,11 +5,11 @@ var express = require('express')
 
 // POST: /extension/connect
 router.post('/connect', twilio.webhook({validate: false}), function (req, res) {
-  var selectedOption = req.body.Digits,
-      extensions = {
-        2: 'brodo',
-        3: 'dagobah',
-        4: 'oober'
+  var selectedOption = req.body.Digits
+    , extensions = {
+        2: 'Brodo',
+        3: 'Dagobah',
+        4: 'Oober'
       };
 
   Agent.findOne({ extension: extensions[selectedOption] })
