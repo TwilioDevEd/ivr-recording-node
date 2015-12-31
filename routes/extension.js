@@ -32,6 +32,7 @@ router.post('/connect', twilio.webhook({validate: false}), function (req, res) {
     })
   .catch(function (err) {
     console.log(err);
+    res.status(500).send('An error has ocurred');
   });
 });
 
