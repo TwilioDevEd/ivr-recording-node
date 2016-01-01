@@ -1,9 +1,8 @@
-var expect = require('chai').expect;
-var supertest = require('supertest');
-var cheerio = require('cheerio');
-var Agent = require('../models/agent');
-
-var app = require('../app.js');
+var expect = require('chai').expect
+  , supertest = require('supertest')
+  , cheerio = require('cheerio')
+  , app = require('../app.js')
+  , Agent = require('../models/agent');
 
 describe('agents', function () {
   describe('GET /agents', function () {

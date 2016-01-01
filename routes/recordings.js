@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var twilio = require('twilio');
-var Agent = require('../models/agent');
+var express = require('express')
+  , router = express.Router()
+  , twilio = require('twilio')
+  , Agent = require('../models/agent');
 
 // POST: /recordings
 router.post('/', function (req, res) {

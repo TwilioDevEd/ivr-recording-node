@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var twilio = require('twilio');
-var Agent = require('../models/agent');
+var express = require('express')
+  , router = express.Router()
+  , twilio = require('twilio')
+  , Agent = require('../models/agent');
 
 // GET: /agents
 router.get('/', function (req, res) {
@@ -19,16 +19,16 @@ router.post('/call', twilio.webhook({validate: false}), function (req, res) {
 
   var twiml = new twilio.TwimlResponse();
   twiml
-    .say("It appears that no agent is available. " +
-         "Please leave a message after the beep",
-         { voice: "alice", language: "en-GB" })
+    .say('It appears that no agent is available. ' +
+         'Please leave a message after the beep',
+         { voice: 'alice', language: 'en-GB' })
     .record({
       maxLength: 20,
       action: '/agents/hangup',
       transcribeCallback: '/recordings?agentId=' + req.query.agentId
     })
-    .say("No record received. Goodbye",
-        { voice: "alice", language: "en-GB" })
+    .say('No record received. Goodbye',
+        { voice: 'alice', language: 'en-GB' })
     .hangup();
 
   res.send(twiml);
@@ -38,8 +38,8 @@ router.post('/call', twilio.webhook({validate: false}), function (req, res) {
 router.post('/hangup', twilio.webhook({validate: false}), function (req, res) {
   var twiml = new twilio.TwimlResponse();
   twiml
-    .say("Thanks for your message. Goodbye",
-         { voice: "alice", language: "en-GB" })
+    .say('Thanks for your message. Goodbye',
+         { voice: 'alice', language: 'en-GB' })
     .hangup();
 
   res.send(twiml);
@@ -50,14 +50,14 @@ router.post('/screencall', twilio.webhook({validate: false}), function (req, res
   var twiml = new twilio.TwimlResponse();
   twiml
     .gather({
-      action: "/agents/connectmessage",
-      numDigits: "1",
+      action: '/agents/connectmessage',
+      numDigits: '1',
     }, function () {
       this
         .say(spellPhoneNumber(req.body.From))
-        .say("Press any key to accept");
+        .say('Press any key to accept');
     })
-    .say("Sorry. Did not get your response")
+    .say('Sorry. Did not get your response')
     .hangup();
 
   res.send(twiml);
@@ -67,7 +67,7 @@ router.post('/screencall', twilio.webhook({validate: false}), function (req, res
 router.post('/connectmessage', twilio.webhook({validate: false}), function (req, res) {
   var twiml = new twilio.TwimlResponse();
   twiml
-    .say("Connecting you to the extraterrestrial in distress");
+    .say('Connecting you to the extraterrestrial in distress');
 
   res.send(twiml);
 });
