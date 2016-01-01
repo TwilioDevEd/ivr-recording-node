@@ -1,18 +1,15 @@
-var expect = require('chai').expect;
-var supertest = require('supertest');
-
-var app = require('../app.js');
+var expect = require('chai').expect
+  , supertest = require('supertest')
+  , app = require('../app.js');
 
 describe('home', function () {
   describe('GET /', function () {
-    it('respond with ok', function (done) {
+    it('redirects to /agents', function (done) {
       var agent = supertest(app);
       agent
         .get('/')
-        .expect(function (response) {
-          expect(response.text).to.contain('Express');
-        })
-        .expect(200, done);
+        .expect('location', '/agents')
+        .expect(302, done);
     });
   });
 });
