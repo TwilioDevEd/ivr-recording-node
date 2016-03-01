@@ -12,7 +12,7 @@ router.post('/welcome', twilio.webhook({validate: false}), function (req, res) {
     this.play('http://howtodocs.s3.amazonaws.com/et-phone.mp3', {loop: 3});
   });
 
-  res.send(twiml);
+  res.send(twiml.toString());
 });
 
 module.exports = router;
