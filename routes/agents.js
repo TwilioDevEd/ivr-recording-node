@@ -31,7 +31,7 @@ router.post('/call', twilio.webhook({validate: false}), function (req, res) {
         { voice: 'alice', language: 'en-GB' })
     .hangup();
 
-  res.send(twiml);
+  res.send(twiml.toString());
 });
 
 // POST: /agents/hangup
@@ -42,7 +42,7 @@ router.post('/hangup', twilio.webhook({validate: false}), function (req, res) {
          { voice: 'alice', language: 'en-GB' })
     .hangup();
 
-  res.send(twiml);
+  res.send(twiml.toString());
 });
 
 // POST: /agents/screencall
@@ -60,7 +60,7 @@ router.post('/screencall', twilio.webhook({validate: false}), function (req, res
     .say('Sorry. Did not get your response')
     .hangup();
 
-  res.send(twiml);
+  res.send(twiml.toString());
 });
 
 // POST: /agents/connectmessage
@@ -69,7 +69,7 @@ router.post('/connectmessage', twilio.webhook({validate: false}), function (req,
   twiml
     .say('Connecting you to the extraterrestrial in distress');
 
-  res.send(twiml);
+  res.send(twiml.toString());
 });
 
 var spellPhoneNumber = function (phoneNumber) {

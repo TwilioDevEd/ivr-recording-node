@@ -28,7 +28,7 @@ router.post('/connect', twilio.webhook({validate: false}), function (req, res) {
         });
       });
 
-    res.send(twiml);
+    res.send(twiml.toString());
   })
   .catch(function (err) {
     console.log(err);
