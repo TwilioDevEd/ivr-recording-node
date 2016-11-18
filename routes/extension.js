@@ -22,7 +22,10 @@ router.post('/connect', twilio.webhook({validate: false}), function (req, res) {
     twiml
       .say('You\'ll be connected shortly to your planet.',
            { voice: 'alice', language: 'en-GB' })
-      .dial({ action: '/agents/call?agentId=' + agent.id }, function() {
+      .dial({
+        action: '/agents/call?agentId=' + agent.id,
+        callerId: agent.phoneNumber
+      }, function() {
         this.number(agent.phoneNumber, {
           url: '/agents/screencall'
         });
