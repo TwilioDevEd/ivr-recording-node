@@ -1,4 +1,4 @@
 var mongoose = require('mongoose');
 
-mongoose.Promise = require('bluebird');
+mongoose.Promise = Promise;
 exports.mongoConnection = mongoose.connect('mongodb://localhost/test');
