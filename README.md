@@ -1,6 +1,10 @@
-# IVR Call Recording and Agent Conference. Level: Intermediate. Powered by Twilio - Express
+<a href="https://www.twilio.com">
+  <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
+</a>
 
-An example application implementing an automated phone line using Twilio and Express.
+# IVR Call Recording and Agent Conference.
+
+IVRs (interactive voice response) are automated phone systems that can facilitate communication between callers and businesses. In this tutorial you will learn how to screen and send callers to voicemail if an agent is busy.
 
 [Read the full tutorial here](https://www.twilio.com/docs/tutorials/walkthrough/ivr-screening/node/express)!
 
@@ -22,37 +26,43 @@ An example application implementing an automated phone line using Twilio and Exp
    $ mongod
    ```
 
-2. Clone this repository and `cd` into its directory:
+1. Clone this repository and `cd` into its directory:
    ```
    $ git clone git@github.com:TwilioDevEd/ivr-recording-node.git
    $ cd ivr-recording-node
    ```
 
-3. To seed the initial data into the database by running the following:
+1. The file `seed/agents.js` contains the agents phone numbers. Replace any of these phone numbers with yours. Then seed the initial data into the database by running the following:
    ```
    $ mongo localhost/call-screening seed/agents.js
    ```
+    When the application asks you to select an agent, choose the one you just modified and it will then call your phone.
 
-4. Install dependencies:
+1. Install dependencies:
    ```
    $ npm install
    ```
+1. Make sure the tests succeed.
 
-5. Run the application.
+  ```bash
+  $ npm test
+  ```
+
+1. Run the application.
   ```
   $ npm start
   ```
 
-6. Check it out at [http://localhost:3000](http://localhost:3000)
+1. Check it out at [http://localhost:3000](http://localhost:3000)
 
-7. Expose the application to the wider Internet using [ngrok](https://ngrok.com/)
+1. Expose the application to the wider Internet using [ngrok](https://ngrok.com/)
    To let our Twilio Phone number use the callback endpoint we exposed, our development server will need to be publicly accessible. [We recommend using ngrok to solve this problem](https://www.twilio.com/blog/2015/09/6-awesome-reasons-to-use-ngrok-when-testing-webhooks.html).
 
    ```
    ngrok http 3000
    ```
 
-9. Provision a number under the [Manage Numbers page](https://www.twilio.com/user/account/phone-numbers/incoming) on your account. Set the voice URL for the number to `http://<your-ngrok-subdomain>.ngrok.io/ivr/welcome`.
+1. Provision a number under the [Manage Numbers page](https://www.twilio.com/user/account/phone-numbers/incoming) on your account. Set the voice URL for the number to `http://<your-ngrok-subdomain>.ngrok.io/ivr/welcome`.
 
 That's it!
 
