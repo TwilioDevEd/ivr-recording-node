@@ -91,4 +91,4 @@ function onListening() {
 }
 
 mongoose.connect('mongodb://localhost/call-screening');
-mongoose.Promise = require('bluebird');
+mongoose.Promise = Promise;
