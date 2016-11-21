@@ -14,42 +14,46 @@ IVRs (interactive voice response) are automated phone systems that can facilitat
 
 1. This sample application stores data in a [MongoDB](https://www.mongodb.org/) database using [Mongoose](http://mongoosejs.com/). You can download and run MongoDB yourself (OS X, Linux, Windows).
 
-   On OS X, maybe the easiest way to get MongoDB running locally is to install via [Homebrew](http://brew.sh/).
+   On OS X, maybe the easiest way to get MongoDB running locally is to install via [Homebrew](http://brew.sh/):
 
-   ```
+   ```bash
    $ brew install mongodb
    ```
 
    You should then be able to run a local server with:
 
-   ```
+   ```bash
    $ mongod
    ```
 
 1. Clone this repository and `cd` into its directory:
-   ```
+
+   ```bash
    $ git clone git@github.com:TwilioDevEd/ivr-recording-node.git
    $ cd ivr-recording-node
    ```
 
 1. The file `seed/agents.js` contains the agents phone numbers. Replace any of these phone numbers with yours. Then seed the initial data into the database by running the following:
-   ```
+
+   ```bash
    $ mongo localhost/call-screening seed/agents.js
    ```
     When the application asks you to select an agent, choose the one you just modified and it will then call your phone.
 
 1. Install dependencies:
-   ```
+
+   ```bash
    $ npm install
    ```
-1. Make sure the tests succeed.
+1. Make sure the tests succeed:
 
   ```bash
   $ npm test
   ```
 
-1. Run the application.
-  ```
+1. Run the application:
+
+  ```bash
   $ npm start
   ```
 
@@ -58,7 +62,7 @@ IVRs (interactive voice response) are automated phone systems that can facilitat
 1. Expose the application to the wider Internet using [ngrok](https://ngrok.com/)
    To let our Twilio Phone number use the callback endpoint we exposed, our development server will need to be publicly accessible. [We recommend using ngrok to solve this problem](https://www.twilio.com/blog/2015/09/6-awesome-reasons-to-use-ngrok-when-testing-webhooks.html).
 
-   ```
+   ```bash
    ngrok http 3000
    ```
 
