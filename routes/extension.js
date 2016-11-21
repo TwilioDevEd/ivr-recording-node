@@ -23,7 +23,7 @@ router.post('/connect', twilio.webhook({validate: false}), function (req, res) {
       .say('You\'ll be connected shortly to your planet.',
            { voice: 'alice', language: 'en-GB' })
       .dial({
-        action: '/agents/call?agentId=' + agent.id,
+        action: `/agents/call?agentId=${agent.id}`,
         callerId: agent.phoneNumber
       }, function() {
         this.number(agent.phoneNumber, {
