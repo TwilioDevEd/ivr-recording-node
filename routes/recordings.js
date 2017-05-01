@@ -1,6 +1,5 @@
 var express = require('express')
   , router = express.Router()
-  , twilio = require('twilio')
   , Agent = require('../models/agent');
 
 // POST: /recordings

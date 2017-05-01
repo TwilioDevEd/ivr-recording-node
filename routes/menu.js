@@ -1,7 +1,7 @@
 var express = require('express')
   , router = express.Router()
   , twilio = require('twilio')
-  , VoiceResponse = require('twilio/lib/twiml/VoiceResponse');
+  , VoiceResponse = twilio.twiml.VoiceResponse;
 
 // POST: /menu
 router.post('/', twilio.webhook({validate: false}), function (req, res) {

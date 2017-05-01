@@ -17,44 +17,44 @@ IVRs (interactive voice response) are automated phone systems that can facilitat
    On OS X, maybe the easiest way to get MongoDB running locally is to install via [Homebrew](http://brew.sh/):
 
    ```bash
-   $ brew install mongodb
+   brew install mongodb
    ```
 
    You should then be able to run a local server with:
 
    ```bash
-   $ mongod
+   mongod
    ```
 
 1. Clone this repository and `cd` into its directory:
 
    ```bash
-   $ git clone git@github.com:TwilioDevEd/ivr-recording-node.git
-   $ cd ivr-recording-node
+   git clone git@github.com:TwilioDevEd/ivr-recording-node.git
+   cd ivr-recording-node
    ```
 
 1. The file `seed/agents.js` contains the agents phone numbers. Replace any of these phone numbers with yours. Then seed the initial data into the database by running the following:
 
    ```bash
-   $ mongo localhost/call-screening seed/agents.js
+   mongo localhost/call-screening seed/agents.js
    ```
     When the application asks you to select an agent, choose the one you just modified and it will then call your phone.
 
 1. Install dependencies:
 
    ```bash
-   $ npm install
+   npm install
    ```
 1. Make sure the tests succeed:
 
   ```bash
-  $ npm test
+  npm test
   ```
 
 1. Run the application:
 
   ```bash
-  $ npm start
+  npm start
   ```
 
 1. Check it out at [http://localhost:3000](http://localhost:3000)
