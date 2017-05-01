@@ -1,17 +1,17 @@
-var mongoose = require('mongoose');
+'use strict';
+const mongoose = require('mongoose');
 
-var Recording = new mongoose.Schema({
-  url:           String,
+const Recording = new mongoose.Schema({
+  url: String,
   transcription: String,
-  phoneNumber:   String
-});
-
-var Agent = new mongoose.Schema({
-  extension:   String,
   phoneNumber: String,
-  recordings:  [Recording]
 });
 
+const Agent = new mongoose.Schema({
+  extension: String,
+  phoneNumber: String,
+  recordings: [Recording],
+});
 
-var agent = mongoose.model('agent', Agent);
+const agent = mongoose.model('agent', Agent);
 module.exports = agent;

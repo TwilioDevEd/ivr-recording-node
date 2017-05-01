@@ -1,38 +1,39 @@
-var expect = require('chai').expect;
-var supertest = require('supertest');
-var cheerio = require('cheerio');
-var Agent = require('../models/agent');
+'use strict';
 
-var app = require('../app.js');
+const expect = require('chai').expect;
+const supertest = require('supertest');
+const Agent = require('../models/agent');
 
-describe('recordings', function () {
-  describe('POST /recordings', function () {
-    var brodo; // Agent reference
+const app = require('../app.js');
 
-    before(function (done) {
-      Agent.create({ extension: '123', phoneNumber: '555 5555' })
-      .then(function (agent) {
+describe('recordings', function() {
+  describe('POST /recordings', function() {
+    let brodo = {}; // Agent reference
+
+    before(function(done) {
+      Agent.create({extension: '123', phoneNumber: '555 5555'})
+      .then(function(agent) {
         brodo = agent;
         done();
       });
     });
 
-    after(function (done) {
+    after(function(done) {
       Agent.remove({}, done);
     });
 
-    it('creates a new recording', function (done) {
-      var agent = supertest(app);
+    it('creates a new recording', function(done) {
+      const agent = supertest(app);
       agent
       .post('/recordings?agentId=' + brodo.id)
       .send({
         From: '555 5556',
         TranscriptionText: 'I am homesick',
-        RecordingUrl: 'http://example.com/brd.mpe'
+        RecordingUrl: 'http://example.com/brd.mpe',
       })
       .expect(201)
       .expect(function(res) {
-        Agent.findOne({}, function (err, agent) {
+        Agent.findOne({}, function(err, agent) {
           expect(agent.recordings.length).to.equal(1);
         });
       })
