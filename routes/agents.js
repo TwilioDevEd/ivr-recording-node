@@ -1,78 +1,83 @@
-var express = require('express')
-  , router = express.Router()
-  , twilio = require('twilio')
-  , Agent = require('../models/agent');
+'use strict';
+
+const express = require('express');
+const twilio = require('twilio');
+const VoiceResponse = twilio.twiml.VoiceResponse;
+const Agent = require('../models/agent');
+
+const router = new express.Router();
 
 // GET: /agents
-router.get('/', function (req, res) {
+router.get('/', function(req, res) {
   Agent.find({})
-    .then(function (agents) {
-      res.render('agents/index', { agents: agents  });
+    .then(function(agents) {
+      res.render('agents/index', {agents: agents});
     });
 });
 
 // POST: /agents/call
-router.post('/call', twilio.webhook({validate: false}), function (req, res) {
+router.post('/call', twilio.webhook({validate: false}), function(req, res) {
   if (req.body.CallStatus === 'completed') {
     return res.send('');
   }
 
-  var twiml = new twilio.TwimlResponse();
-  twiml
-    .say('It appears that no agent is available. ' +
-         'Please leave a message after the beep',
-         { voice: 'alice', language: 'en-GB' })
-    .record({
-      maxLength: 20,
-      action: '/agents/hangup',
-      transcribeCallback: '/recordings?agentId=' + req.query.agentId
-    })
-    .say('No record received. Goodbye',
-        { voice: 'alice', language: 'en-GB' })
-    .hangup();
+  const twiml = new VoiceResponse();
+  twiml.say(
+    {voice: 'alice', language: 'en-GB'},
+    'It appears that no agent is available. ' +
+    'Please leave a message after the beep');
+  twiml.record({
+    maxLength: 20,
+    action: '/agents/hangup',
+    transcribeCallback: '/recordings?agentId=' + req.query.agentId,
+  });
+  twiml.say(
+    {voice: 'alice', language: 'en-GB'},
+    'No record received. Goodbye');
+  twiml.hangup();
 
   res.send(twiml.toString());
 });
 
 // POST: /agents/hangup
-router.post('/hangup', twilio.webhook({validate: false}), function (req, res) {
-  var twiml = new twilio.TwimlResponse();
-  twiml
-    .say('Thanks for your message. Goodbye',
-         { voice: 'alice', language: 'en-GB' })
-    .hangup();
+router.post('/hangup', twilio.webhook({validate: false}), function(req, res) {
+  const twiml = new VoiceResponse();
+  twiml.say(
+    {voice: 'alice', language: 'en-GB'},
+    'Thanks for your message. Goodbye');
+  twiml.hangup();
 
   res.send(twiml.toString());
 });
 
 // POST: /agents/screencall
-router.post('/screencall', twilio.webhook({validate: false}), function (req, res) {
-  var twiml = new twilio.TwimlResponse();
-  twiml
-    .gather({
+router.post('/screencall', twilio.webhook({validate: false}),
+  function(req, res) {
+    const twiml = new VoiceResponse();
+    const gather = twiml.gather({
       action: '/agents/connectmessage',
       numDigits: '1',
-    }, function () {
-      this
-        .say(spellPhoneNumber(req.body.From))
-        .say('Press any key to accept');
-    })
-    .say('Sorry. Did not get your response')
-    .hangup();
+    });
+    gather.say(spellPhoneNumber(req.body.From));
+    gather.say('Press any key to accept');
 
-  res.send(twiml.toString());
-});
+    twiml.say('Sorry. Did not get your response');
+    twiml.hangup();
+
+    res.send(twiml.toString());
+  });
 
 // POST: /agents/connectmessage
-router.post('/connectmessage', twilio.webhook({validate: false}), function (req, res) {
-  var twiml = new twilio.TwimlResponse();
-  twiml
-    .say('Connecting you to the extraterrestrial in distress');
+router.post('/connectmessage', twilio.webhook({validate: false}),
+  function(req, res) {
+    const twiml = new VoiceResponse();
+    twiml
+      .say('Connecting you to the extraterrestrial in distress');
 
-  res.send(twiml.toString());
-});
+    res.send(twiml.toString());
+  });
 
-var spellPhoneNumber = function (phoneNumber) {
+const spellPhoneNumber = function(phoneNumber) {
   return phoneNumber.split('').join(',');
 };
 

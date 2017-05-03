@@ -1,6 +1,10 @@
-# IVR Call Recording and Agent Conference. Level: Intermediate. Powered by Twilio - Express
+<a href="https://www.twilio.com">
+  <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
+</a>
 
-An example application implementing an automated phone line using Twilio and Express.
+# IVR Call Recording and Agent Conference.
+
+IVRs (interactive voice response) are automated phone systems that can facilitate communication between callers and businesses. In this tutorial you will learn how to screen and send callers to voicemail if an agent is busy.
 
 [Read the full tutorial here](https://www.twilio.com/docs/tutorials/walkthrough/ivr-screening/node/express)!
 
@@ -10,49 +14,59 @@ An example application implementing an automated phone line using Twilio and Exp
 
 1. This sample application stores data in a [MongoDB](https://www.mongodb.org/) database using [Mongoose](http://mongoosejs.com/). You can download and run MongoDB yourself (OS X, Linux, Windows).
 
-   On OS X, maybe the easiest way to get MongoDB running locally is to install via [Homebrew](http://brew.sh/).
+   On OS X, maybe the easiest way to get MongoDB running locally is to install via [Homebrew](http://brew.sh/):
 
-   ```
-   $ brew install mongodb
+   ```bash
+   brew install mongodb
    ```
 
    You should then be able to run a local server with:
 
-   ```
-   $ mongod
-   ```
-
-2. Clone this repository and `cd` into its directory:
-   ```
-   $ git clone git@github.com:TwilioDevEd/ivr-recording-node.git
-   $ cd ivr-recording-node
+   ```bash
+   mongod
    ```
 
-3. To seed the initial data into the database by running the following:
-   ```
-   $ mongo localhost/call-screening seed/agents.js
+1. Clone this repository and `cd` into its directory:
+
+   ```bash
+   git clone git@github.com:TwilioDevEd/ivr-recording-node.git
+   cd ivr-recording-node
    ```
 
-4. Install dependencies:
-   ```
-   $ npm install
-   ```
+1. The file `seed/agents.js` contains the agents phone numbers. Replace any of these phone numbers with yours. Then seed the initial data into the database by running the following:
 
-5. Run the application.
+   ```bash
+   mongo localhost/call-screening seed/agents.js
+   ```
+    When the application asks you to select an agent, choose the one you just modified and it will then call your phone.
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+1. Make sure the tests succeed:
+
+  ```bash
+  npm test
   ```
-  $ npm start
+
+1. Run the application:
+
+  ```bash
+  npm start
   ```
 
-6. Check it out at [http://localhost:3000](http://localhost:3000)
+1. Check it out at [http://localhost:3000](http://localhost:3000)
 
-7. Expose the application to the wider Internet using [ngrok](https://ngrok.com/)
+1. Expose the application to the wider Internet using [ngrok](https://ngrok.com/)
    To let our Twilio Phone number use the callback endpoint we exposed, our development server will need to be publicly accessible. [We recommend using ngrok to solve this problem](https://www.twilio.com/blog/2015/09/6-awesome-reasons-to-use-ngrok-when-testing-webhooks.html).
 
-   ```
+   ```bash
    ngrok http 3000
    ```
 
-9. Provision a number under the [Manage Numbers page](https://www.twilio.com/user/account/phone-numbers/incoming) on your account. Set the voice URL for the number to `http://<your-ngrok-subdomain>.ngrok.io/ivr/welcome`.
+1. Provision a number under the [Manage Numbers page](https://www.twilio.com/user/account/phone-numbers/incoming) on your account. Set the voice URL for the number to `http://<your-ngrok-subdomain>.ngrok.io/ivr/welcome`.
 
 That's it!
 

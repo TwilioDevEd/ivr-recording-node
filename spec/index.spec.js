@@ -1,11 +1,12 @@
-var expect = require('chai').expect
-  , supertest = require('supertest')
-  , app = require('../app.js');
+'use strict';
 
-describe('home', function () {
-  describe('GET /', function () {
-    it('redirects to /agents', function (done) {
-      var agent = supertest(app);
+const supertest = require('supertest');
+const app = require('../app.js');
+
+describe('home', function() {
+  describe('GET /', function() {
+    it('redirects to /agents', function(done) {
+      const agent = supertest(app);
       agent
         .get('/')
         .expect('location', '/agents')
