@@ -13,6 +13,7 @@ describe('menu', function() {
         agent
         .post('/menu')
         .send({Digits: 1})
+        .set('X-Twilio-Signature', ['foo'])
         .expect(function(res) {
           const $ = cheerio.load(res.text);
           expect($('Say').length).to.equal(2);
@@ -28,6 +29,7 @@ describe('menu', function() {
         agent
         .post('/menu')
         .send({Digits: 2})
+        .set('X-Twilio-Signature', ['foo'])
         .expect(function(res) {
           const $ = cheerio.load(res.text);
           expect($('Gather').first().attr('action'))
@@ -44,6 +46,7 @@ describe('menu', function() {
         agent
         .post('/menu')
         .send({Digits: 3})
+        .set('X-Twilio-Signature', ['foo'])
         .expect(function(res) {
           const $ = cheerio.load(res.text);
           expect($('Redirect').first().text()).to.equal('/ivr/welcome');

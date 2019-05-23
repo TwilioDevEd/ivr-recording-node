@@ -45,17 +45,18 @@ IVRs (interactive voice response) are automated phone systems that can facilitat
    ```bash
    npm install
    ```
+
 1. Make sure the tests succeed:
 
-  ```bash
-  npm test
-  ```
+    ```bash
+    npm test
+    ```
 
 1. Run the application:
 
-  ```bash
-  npm start
-  ```
+    ```bash
+    npm start
+    ```
 
 1. Check it out at [http://localhost:3000](http://localhost:3000)
 

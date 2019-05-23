@@ -12,6 +12,7 @@ describe('ivr', function() {
       const agent = supertest(app);
       agent
       .post('/ivr/welcome')
+      .set('X-Twilio-Signature', ['foo'])
       .expect(function(res) {
         const $ = cheerio.load(res.text);
         expect($('Gather').children('Play').length).to.equal(1);
