@@ -30,6 +30,7 @@ describe('extension', function() {
         agent
           .post('/extension/connect')
           .send({Digits: 2})
+          .set('X-Twilio-Signature', ['foo'])
           .expect(function(res) {
             const $ = cheerio.load(res.text);
             expect($('Say').length).to.equal(1);
@@ -39,7 +40,8 @@ describe('extension', function() {
             expect($('Dial').children().first().attr('url'))
               .to.equal('/agents/screencall');
           })
-        .expect(200, done);
+        .expect(200)
+        .end(done);
       });
     });
 
@@ -49,11 +51,13 @@ describe('extension', function() {
         agent
           .post('/extension/connect')
           .send({Digits: 0})
+          .set('X-Twilio-Signature', ['foo'])
           .expect(function(res) {
             const $ = cheerio.load(res.text);
             expect($('Redirect').first().text()).to.equal('/ivr/welcome');
           })
-        .expect(200, done);
+        .expect(200)
+        .end(done);
       });
     });
   });

@@ -47,10 +47,12 @@ describe('agents', function() {
         agent
           .post('/agents/call')
           .send({CallStatus: 'completed'})
+          .set('X-Twilio-Signature', ['foo'])
           .expect(function(res) {
             expect(res.text).to.not.contain('Response');
           })
-        .expect(200, done);
+        .expect(200)
+        .end(done);
       });
     });
 
@@ -62,6 +64,7 @@ describe('agents', function() {
           .send({
             CallStatus: 'in-progress',
           })
+          .set('X-Twilio-Signature', ['foo'])
           .expect(function(res) {
             const $ = cheerio.load(res.text);
             expect($('Say').length).to.equal(2);
@@ -71,7 +74,8 @@ describe('agents', function() {
               .to.equal('/agents/hangup');
             expect($('Hangup').length).to.equal(1);
           })
-        .expect(200, done);
+        .expect(200)
+        .end(done);
       });
     });
   });
@@ -81,12 +85,14 @@ describe('agents', function() {
       const agent = supertest(app);
       agent
         .post('/agents/hangup')
+        .set('X-Twilio-Signature', ['foo'])
         .expect(function(res) {
           const $ = cheerio.load(res.text);
           expect($('Say').length).to.equal(1);
           expect($('Hangup').length).to.equal(1);
         })
-      .expect(200, done);
+      .expect(200)
+      .end(done);
     });
   });
 
@@ -96,6 +102,7 @@ describe('agents', function() {
       agent
         .post('/agents/screencall')
         .send({From: '1234567890'})
+        .set('X-Twilio-Signature', ['foo'])
         .expect(function(res) {
           const $ = cheerio.load(res.text);
           expect($('Gather').first().attr('action'))
@@ -104,7 +111,8 @@ describe('agents', function() {
               .to.equal('1,2,3,4,5,6,7,8,9,0');
           expect($('Hangup').length).to.equal(1);
         })
-      .expect(200, done);
+      .expect(200)
+      .end(done);
     });
   });
 
@@ -113,11 +121,13 @@ describe('agents', function() {
       const agent = supertest(app);
       agent
         .post('/agents/connectmessage')
+        .set('X-Twilio-Signature', ['foo'])
         .expect(function(res) {
           const $ = cheerio.load(res.text);
           expect($('Say').length).to.equal(1);
         })
-      .expect(200, done);
+      .expect(200)
+      .end(done);
     });
   });
 });
