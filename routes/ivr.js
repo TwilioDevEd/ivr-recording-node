@@ -13,7 +13,7 @@ router.post('/welcome', twilio.webhook({validate: false}), function(req, res) {
     action: '/menu',
     numDigits: '1',
   });
-  gather.play({loop: 3}, 'http://howtodocs.s3.amazonaws.com/et-phone.mp3');
+  gather.play({loop: 3}, 'https://can-tasty-8188.twil.io/assets/et-phone.mp3');
 
   res.send(twiml.toString());
 });
