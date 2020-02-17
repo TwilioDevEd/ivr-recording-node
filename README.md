@@ -17,13 +17,14 @@ IVRs (interactive voice response) are automated phone systems that can facilitat
    On OS X, maybe the easiest way to get MongoDB running locally is to install via [Homebrew](http://brew.sh/):
 
    ```bash
-   brew install mongodb
+   brew tap mongodb/brew
+   brew install mongodb-community
    ```
 
    You should then be able to run a local server with:
 
    ```bash
-   mongod
+   brew services start mongodb-community
    ```
 
 1. Clone this repository and `cd` into its directory:
