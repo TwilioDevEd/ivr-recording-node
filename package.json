@@ -41,7 +41,7 @@
     "morgan": "^1.9.1",
     "pug": "^2.0.3",
     "serve-favicon": "^2.5.0",
-    "twilio": "^3.31.0"
+    "twilio": "^3.39.5"
   },
   "devDependencies": {
     "chai": "^3.4.1",
