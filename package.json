@@ -34,7 +34,7 @@
     "cookie-parser": "~1.4.3",
     "debug": "^4.1.1",
     "express": "^4.17.0",
-    "express-session": "^1.16.1",
+    "express-session": "^1.17.1",
     "kerberos": "~0.0.17",
     "mongoose": "^5.5.10",
     "mongoose-deep-populate": "^3.0.0",
