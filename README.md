@@ -8,7 +8,7 @@ IVRs (interactive voice response) are automated phone systems that can facilitat
 
 [Read the full tutorial here](https://www.twilio.com/docs/tutorials/walkthrough/ivr-screening/node/express)!
 
-[![Build Status](https://travis-ci.org/TwilioDevEd/ivr-recording-node.svg?branch=master)](https://travis-ci.org/TwilioDevEd/ivr-recording-node)
+[![Node.js CI](https://github.com/TwilioDevEd/ivr-recording-node/actions/workflows/node.js.yml/badge.svg)](https://github.com/TwilioDevEd/ivr-recording-node/actions/workflows/node.js.yml)
 
 ## Local Development
 
