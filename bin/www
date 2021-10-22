@@ -4,6 +4,9 @@
  * Module dependencies.
  */
 'use strict';
+
+require('dotenv-safe').config();
+
 const app = require('../app');
 const debug = require('debug')('ivr-recording-node:server');
 const http = require('http');
