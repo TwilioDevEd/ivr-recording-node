@@ -47,7 +47,7 @@
     "chai": "^3.4.1",
     "cheerio": "^0.22.0",
     "eslint": "^3.19.0",
-    "eslint-config-google": "^0.7.1",
+    "eslint-config-google": "^0.8.1",
     "mocha": "^6.1.4",
     "supertest": "^4.0.2"
   }
