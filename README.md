@@ -34,6 +34,12 @@ IVRs (interactive voice response) are automated phone systems that can facilitat
    cd ivr-recording-node
    ```
 
+1. Copy the sample configuration file and edit it to match your configuration.
+
+   ```bash
+   $ cp .env.example .env
+   ```
+
 1. The file `seed/agents.js` contains the agents phone numbers. Replace any of these phone numbers with yours. Then seed the initial data into the database by running the following:
 
    ```bash
