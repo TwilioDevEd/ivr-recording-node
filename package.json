@@ -32,7 +32,7 @@
     "brackets-eslint": "^3.0.6",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
-    "debug": "^4.1.1",
+    "debug": "^4.3.4",
     "dotenv-safe": "^8.2.0",
     "express": "^4.17.0",
     "express-session": "^1.16.1",
