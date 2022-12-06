@@ -50,6 +50,6 @@
     "eslint": "^8.1.0",
     "eslint-config-google": "^0.7.1",
     "mocha": "^6.1.4",
-    "supertest": "^4.0.2"
+    "supertest": "^6.3.2"
   }
 }
