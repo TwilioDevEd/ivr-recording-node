@@ -20,7 +20,7 @@ router.post('/', twilio.webhook({validate: false}), function(req, res) {
 
 const returnInstructions = function() {
   const twiml = new VoiceResponse();
-  twiml.say({voice: 'alice', language: 'en-GB'},
+  twiml.say({voice: 'Polly.Amy', language: 'en-GB'},
             'To get to your extraction point, get on your bike and go down ' +
             'the street. Then Left down an alley. Avoid the police cars.' +
             ' Turn left into an unfinished housing development. Fly over ' +
@@ -39,7 +39,7 @@ const planets = function() {
     action: '/extension/connect',
     numDigits: '1',
   });
-  gather.say({voice: 'alice', language: 'en-GB', loop: '3'},
+  gather.say({voice: 'Polly.Amy', language: 'en-GB', loop: '3'},
              'To call the planet Broh doe As O G, press 2. To call the ' +
              'planet DuhGo bah, press 3. To call an oober asteroid to your ' +
              'location, press 4. To go back to the main menu, press ' +

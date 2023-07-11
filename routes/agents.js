@@ -23,7 +23,7 @@ router.post('/call', twilio.webhook({validate: false}), function(req, res) {
 
   const twiml = new VoiceResponse();
   twiml.say(
-    {voice: 'alice', language: 'en-GB'},
+    {voice: 'Polly.Amy', language: 'en-GB'},
     'It appears that no agent is available. ' +
     'Please leave a message after the beep');
   twiml.record({
@@ -32,7 +32,7 @@ router.post('/call', twilio.webhook({validate: false}), function(req, res) {
     transcribeCallback: '/recordings?agentId=' + req.query.agentId,
   });
   twiml.say(
-    {voice: 'alice', language: 'en-GB'},
+    {voice: 'Polly.Amy', language: 'en-GB'},
     'No record received. Goodbye');
   twiml.hangup();
 
@@ -43,7 +43,7 @@ router.post('/call', twilio.webhook({validate: false}), function(req, res) {
 router.post('/hangup', twilio.webhook({validate: false}), function(req, res) {
   const twiml = new VoiceResponse();
   twiml.say(
-    {voice: 'alice', language: 'en-GB'},
+    {voice: 'Polly.Amy', language: 'en-GB'},
     'Thanks for your message. Goodbye');
   twiml.hangup();
 
