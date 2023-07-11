@@ -24,7 +24,7 @@ router.post('/connect', twilio.webhook({validate: false}), function(req, res) {
 
     const twiml = new VoiceResponse();
     twiml.say(
-      {voice: 'alice', language: 'en-GB'},
+      {voice: 'Polly.Amy', language: 'en-GB'},
       'You\'ll be connected shortly to your planet.'
     );
     const dial = twiml.dial({
